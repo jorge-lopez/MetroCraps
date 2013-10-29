@@ -11,6 +11,8 @@ namespace MetroCraps
 
         private static int ronda = 1;
         private static int punto = 1;
+
+        public static int Punto { get { return punto; } }
         enum ESTADO
         {
             PERDIO = -1,
@@ -53,38 +55,36 @@ namespace MetroCraps
                 switch ((ESTADO)estado)
                 {
                     case ESTADO.PERDIO:
-                        ronda = 1;
+                        RestaurarValores();
                         return (int)ESTADO.PERDIO;
                     case ESTADO.CONTINUA:
                         return (int)ESTADO.CONTINUA;
                     case ESTADO.GANO:
-                        ronda = 1;
+                        RestaurarValores();
                         return (int)ESTADO.GANO;
                     default:
                         return (int)ESTADO.CONTINUA;
                 }
-
-                
             }
-
         }
-        public static int SiguientesJugadas(out int PrimerDado, out int SegundoDado, int punto)
+        private static int SiguientesJugadas(out int PrimerDado, out int SegundoDado, int punto)
         {
-            
-            if (punto == TirarDados(out PrimerDado, out SegundoDado))
+            int dados = TirarDados(out PrimerDado, out SegundoDado);
+
+            if (dados == punto)
             {
                 return (int)ESTADO.GANO;
             }
-            else if(punto == (int)JUGADAS.SEVEN)
+            else if(dados == (int)JUGADAS.SEVEN)
             {
-                return (int)ESTADO.GANO;
+                return (int)ESTADO.PERDIO;
             }
             else
             {
                 return (int)ESTADO.CONTINUA;
             }
         }
-        public static int PrimeraJugada(out int PrimerDado,out int SegundoDado) 
+        private static int PrimeraJugada(out int PrimerDado, out int SegundoDado) 
         {
             switch ((JUGADAS)TirarDados(out PrimerDado,out SegundoDado))
             {
@@ -111,6 +111,11 @@ namespace MetroCraps
             int suma = PrimerDado + SegundoDado;
 
             return suma;
+        }
+        private static void RestaurarValores()
+        {
+            ronda = 1;
+            punto = 1;
         }
     }
 }

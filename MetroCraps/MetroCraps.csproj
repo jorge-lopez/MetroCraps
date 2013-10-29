@@ -101,6 +101,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\dado1.png" />
+    <Resource Include="Imagenes\dado2.png" />
+    <Resource Include="Imagenes\dado3.png" />
+    <Resource Include="Imagenes\dado4.png" />
+    <Resource Include="Imagenes\dado5.png" />
+    <Resource Include="Imagenes\dado6.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
